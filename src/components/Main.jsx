@@ -19,7 +19,7 @@ const Main = ({data, setData}) => {
                 time: new Date().toLocaleString(),
                 iswho: selectWho,
             }
-            setData([newData, ...data]);
+            setData([newData,...data]);
             setNickName(''); // 등록 후 닉네임 초기화
             setContents(''); // 등록 후 내용 초기화
             setProfileImg(''); // 등록 후 프로필 url 초기화

@@ -39,3 +39,4 @@ export default Footer
 // 사진, 닉네임, to.누구, 시간, 수정 input창
 // 수정완료 버튼
 // 클릭시 이대로 수정하시겠습니까? 물어보고 확인 누르면 수정
+// `${process.env.PUBLIC_URL}/public_assets/profile.jpg`
