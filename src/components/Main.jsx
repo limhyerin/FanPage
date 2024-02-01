@@ -13,19 +13,15 @@ const Main = ({data, setData}) => {
                 id: uuid(),
                 nickName: nickName,
                 contents: contents,
+                time: new Date().toLocaleString(),
             }
             setData([...data, newData]);
-            console.log(data);
             setNickName(''); // 등록 후 닉네임 초기화
             setContents(''); // 등록 후 내용 초기화
         } else {
             alert("닉네임과 내용은 필수 입력값입니다.");
         }
     }
-    // return (
-    //     {dummy.map(e=>
-    //     <div key={uuid()}>{e}</div>)}
-    // )}
     return <main>
                 <InputData
                     title={"닉네임"}

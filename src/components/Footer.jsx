@@ -1,19 +1,19 @@
-import { useState } from "react";
+import React from "react";
 
 const Footer = ({data}) => {
-    const [nickName, setNickName] = useState('');
-    const [contents, setContents] = useState('');
     return <footer>
                 {
                     data.filter((item) => !item.isDone).map((item) => (
                         <div key={item.id} className="boxContainer">
-                            <div className="box">
-                                <div>
-                                    <p>이미지 들어올 곳</p>
+                            <div className="box" onClick={() => {
+                                alert('박스 클릭!');
+                            }}>
+                                <div className="profileZone">
+                                    <img className="profileIMG" alt="profileImg" src={`${process.env.PUBLIC_URL}/public_assets/profile.jpg`}/>  
                                 </div>
-                                <div>
+                                <div className="contentsZone">
                                     <h3>{item.nickName}</h3>
-                                    <p>시간</p>
+                                    <p>{item.time}</p>
                                     <p>{item.contents}</p>
                                 </div>
                             </div>
