@@ -1,15 +1,16 @@
 import React from "react";
 
-const Footer = ({data}) => {
+const Footer = ({data, selectBtn}) => {
+    const filteredData = data.filter((item) => item.iswho === selectBtn);
     return <footer>
                 {
-                    data.filter((item) => !item.isDone).map((item) => (
+                    filteredData.map((item) => (
                         <div key={item.id} className="boxContainer">
                             <div className="box" onClick={() => {
                                 alert('박스 클릭!');
                             }}>
                                 <div className="profileZone">
-                                    <img className="profileIMG" alt="profileImg" src={`${process.env.PUBLIC_URL}/public_assets/profile.jpg`}/>  
+                                    <img className="profileIMG" alt="profileImg" src={item.profileImg}/>  
                                 </div>
                                 <div className="contentsZone">
                                     <h3>{item.nickName}</h3>

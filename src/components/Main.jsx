@@ -6,6 +6,8 @@ import uuid from "react-uuid";
 const Main = ({data, setData}) => {
     const [nickName, setNickName] = useState('');
     const [contents, setContents] = useState('');
+    const [profileImg, setProfileImg] = useState('');
+    const [selectWho, setSelectWho] = useState('winter');
 
     const clickAddHandler = (event) => {
         if(nickName && contents) {
@@ -13,11 +15,14 @@ const Main = ({data, setData}) => {
                 id: uuid(),
                 nickName: nickName,
                 contents: contents,
+                profileImg: profileImg || `${process.env.PUBLIC_URL}/public_assets/profile.jpg`,
                 time: new Date().toLocaleString(),
+                iswho: selectWho,
             }
             setData([...data, newData]);
             setNickName(''); // 등록 후 닉네임 초기화
             setContents(''); // 등록 후 내용 초기화
+            setProfileImg(''); // 등록 후 프로필 url 초기화
         } else {
             alert("닉네임과 내용은 필수 입력값입니다.");
         }
@@ -39,13 +44,23 @@ const Main = ({data, setData}) => {
                         setContents(e.target.value);
                     }}
                 />
+                <InputData
+                    title={"프로필"}
+                    placeholder={"프로필 이미지 url 작성"}
+                    value={profileImg}
+                    onChange={(e) => {
+                        setProfileImg(e.target.value);
+                    }}
+                />
                 <div className="whoSend">
                     <p>누구에게 보내실건가요?</p>
-                    <select name="choice">
+                    <select name="choice" value={selectWho} onChange={(e) => {
+                        setSelectWho(e.target.value);
+                    }}>
                         <option value="winter">윈터</option>
                         <option value="karina">카리나</option>
-                        <option value="Ningning">닝닝</option>
-                        <option value="Giselle">지젤</option>
+                        <option value="ningning">닝닝</option>
+                        <option value="giselle">지젤</option>
                     </select>
                     </div>
                     <div>

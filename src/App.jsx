@@ -7,11 +7,12 @@ import { useState } from "react";
 
 function App() {
   const [data, setData] = useState([]);
+  const [selectBtn, setSelectBtn] = useState('');
 return (
   <div className="container">
-    <Header data={data} />
+    <Header setSelectBtn={setSelectBtn} />
     <Main data={data} setData={setData}/>
-    <Footer data={data} />
+    <Footer data={data} selectBtn={selectBtn}/>
   </div>
 );
 }
