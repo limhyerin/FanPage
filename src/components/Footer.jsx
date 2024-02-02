@@ -1,30 +1,71 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+
+const StyledFooter = styled.footer`
+    width: 50%;
+    text-align: center;
+    background-color: rgba(122, 90, 90, 0.623);
+    border: 3px solid rgba(163, 163, 163, 0.205);
+    border-radius: 8px;
+    padding: 20px 20px 20px 20px;
+  
+    margin: 10px auto 10px auto;
+`;
+
+const StyledBox = styled.div`
+    background-color: transparent;
+    border: 3px solid rgb(255, 255, 255);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    padding: 10px 10px 10px 10px;
+  
+    text-decoration: none;
+    color: black;
+    &:hover {
+        border: 3px solid rgba(21, 78, 192, 0.692);
+    }
+`; 
+  
+const StyledProfileIMG = styled.img`
+    width: 90px;
+    border-radius: 70%;
+`; 
+
+const StyledProfileZone = styled.div`
+    width: 20%;
+    padding-top: 20px;
+`; 
+
+const StyledContentZone = styled.div`
+    width: 80%;
+`; 
 
 const Footer = ({data, selectBtn}) => {
     const navigate = useNavigate();
     const filteredData = data.filter((item) => item.iswho === selectBtn);
-    return <footer>
+    return <StyledFooter>
                 {
                     filteredData.map((item) => (
                         <div key={item.id} className="boxContainer">
-                            <div className="box" onClick={() => {
+                            <StyledBox onClick={() => {
                                 navigate(`/detail/${item.id}`);
                             }}>
-                                <div className="profileZone">
-                                    <img className="profileIMG" alt="profileImg" src={item.profileImg}/>  
-                                </div>
-                                <div className="contentsZone">
+                                <StyledProfileZone>
+                                    <StyledProfileIMG alt="profileImg" src={item.profileImg}/>  
+                                </StyledProfileZone>
+                                <StyledContentZone>
                                     <h3>{item.nickName}</h3>
                                     <p>{item.time}</p>
                                     <p>{item.contents}</p>
                                     {console.log(data)}
-                                </div>
-                            </div>
+                                </StyledContentZone>
+                            </StyledBox>
                         </div>
                     ))
                 }
-            </footer>
+            </StyledFooter>
 }
 
 export default Footer

@@ -1,7 +1,32 @@
 import InputData from "./InputData";
 import { useState } from "react";
 import uuid from "react-uuid";
-// import styled from "styled-components"
+import styled from "styled-components"
+
+const StyledMain = styled.main`
+    height: 250px;
+    width: 30%;
+  
+    text-align: center;
+    margin: 10px auto 10px auto;
+    background-color: rgba(122, 90, 90, 0.623);
+    border: 3px solid rgba(163, 163, 163, 0.205);
+    border-radius: 8px;
+  
+    padding: 20px auto 20px auto;
+`;
+
+const StyledRegist = styled.main`
+    width: 200px;
+    height: 20%;
+    margin: 10px auto 10px auto;
+    border: 3px solid rgb(255, 255, 255);
+    border-radius: 8px;
+    background-color: rgba(210, 216, 228, 0.692);
+    &:hover {
+        border: 3px solid rgba(21, 78, 192, 0.692);
+    }
+`;
 
 const Main = ({data, setData}) => {
     const [nickName, setNickName] = useState('');
@@ -27,7 +52,7 @@ const Main = ({data, setData}) => {
             alert("닉네임과 내용은 필수 입력값입니다.");
         }
     }
-    return <main>
+    return <StyledMain>
                 <InputData
                     title={"닉네임"}
                     placeholder={"최대 20글자까지 작성할 수 있습니다"}
@@ -64,9 +89,9 @@ const Main = ({data, setData}) => {
                     </select>
                     </div>
                     <div>
-                    <button className="regist" onClick={clickAddHandler}>펜레터 등록</button>
+                    <StyledRegist onClick={clickAddHandler}>펜레터 등록</StyledRegist>
                 </div>
-            </main>
+            </StyledMain>
 }
 
 export default Main
