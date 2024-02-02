@@ -1,7 +1,8 @@
 import InputData from "./InputData";
-import { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import uuid from "react-uuid";
 import styled from "styled-components"
+import MyContext from "../shared/Context";
 
 const StyledMain = styled.main`
     height: 250px;
@@ -28,11 +29,12 @@ const StyledRegist = styled.main`
     }
 `;
 
-const Main = ({data, setData}) => {
+const Main = () => {
     const [nickName, setNickName] = useState('');
     const [contents, setContents] = useState('');
     const [profileImg, setProfileImg] = useState('');
     const [selectWho, setSelectWho] = useState('winter');
+    const { data, setData } = useContext(MyContext); // 데이터에 접근
 
     const clickAddHandler = (event) => {
         if(nickName && contents) {
@@ -52,6 +54,12 @@ const Main = ({data, setData}) => {
             alert("닉네임과 내용은 필수 입력값입니다.");
         }
     }
+
+    // 로컬 스토리지 데이터 저장
+    useEffect(() => {
+        localStorage.setItem('data', JSON.stringify(data));
+    }, [data]);
+    
     return <StyledMain>
                 <InputData
                     title={"닉네임"}

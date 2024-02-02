@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import React, { useContext } from "react";
+import MyContext from "../shared/Context";
 
 const StyledHeader = styled.header`
     background-image: url("${process.env.PUBLIC_URL}/public_assets/backgroundIMG.png");
@@ -43,7 +45,8 @@ const StyledMemberBtn = styled.button`
     }
 `;
 
-const Header = ({setSelectBtn}) => {
+const Header = () => {
+    const { setSelectBtn } = useContext(MyContext); // 데이터에 접근
     return <StyledHeader>
                 <StyledLogoAndBtn>
                 <StyledLogo>

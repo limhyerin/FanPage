@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import MyContext from "../shared/Context";
 
 const StyledFooter = styled.footer`
     width: 50%;
@@ -42,9 +43,21 @@ const StyledContentZone = styled.div`
     width: 80%;
 `; 
 
-const Footer = ({data, selectBtn}) => {
+const Footer = () => {
     const navigate = useNavigate();
-    const filteredData = data.filter((item) => item.iswho === selectBtn);
+    const { data, setData, selectBtn } = useContext(MyContext); // 데이터에 접근
+    const [filteredData, setFilteredData] = useState([]);
+    // 로컬 스토리지에서 데이터 불러오기
+    useEffect(() => {
+        const storedData = JSON.parse(localStorage.getItem('myData')) || [];
+        setData(storedData);
+      }, [setData]);
+      
+      useEffect(() => {
+        const newData = data.filter((item) => item.iswho === selectBtn);
+        setFilteredData(newData);
+      }, [data, selectBtn]);
+
     return <StyledFooter>
                 {
                     filteredData.map((item) => (
@@ -59,7 +72,6 @@ const Footer = ({data, selectBtn}) => {
                                     <h3>{item.nickName}</h3>
                                     <p>{item.time}</p>
                                     <p>{item.contents}</p>
-                                    {console.log(data)}
                                 </StyledContentZone>
                             </StyledBox>
                         </div>
@@ -69,18 +81,3 @@ const Footer = ({data, selectBtn}) => {
 }
 
 export default Footer
-
-
-
-// 왼쪽 사진
-// 오른쪽 닉네임, 시간, 내용
-// 아래 수정, 삭제 버튼
-// 삭제 버튼 클릭시 정말로 삭제 하겠냐는 안내창 띄우기
-// 마우스 올리면 hover() 커져보이는
-// 클릭시 새 페이지 이동 -> 
-
-// 새 페이지에서 홈으로 돌아가는 버튼 하나,
-// 사진, 닉네임, to.누구, 시간, 수정 input창
-// 수정완료 버튼
-// 클릭시 이대로 수정하시겠습니까? 물어보고 확인 누르면 수정
-// `${process.env.PUBLIC_URL}/public_assets/profile.jpg`

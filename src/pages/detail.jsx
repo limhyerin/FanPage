@@ -24,6 +24,7 @@ function Detail() {
       <button onClick={editHandler}>수정</button>
       <button onClick={deleteHandler}>삭제</button>
     </div>
-    )
+  )
 }
+
 export default Detail
