@@ -1,13 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Footer = ({data, selectBtn}) => {
+    const navigate = useNavigate();
     const filteredData = data.filter((item) => item.iswho === selectBtn);
     return <footer>
                 {
                     filteredData.map((item) => (
                         <div key={item.id} className="boxContainer">
                             <div className="box" onClick={() => {
-                                alert('박스 클릭!');
+                                navigate(`/detail/${item.id}`);
                             }}>
                                 <div className="profileZone">
                                     <img className="profileIMG" alt="profileImg" src={item.profileImg}/>  
@@ -16,6 +18,7 @@ const Footer = ({data, selectBtn}) => {
                                     <h3>{item.nickName}</h3>
                                     <p>{item.time}</p>
                                     <p>{item.contents}</p>
+                                    {console.log(data)}
                                 </div>
                             </div>
                         </div>
