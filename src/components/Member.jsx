@@ -1,0 +1,59 @@
+import React, { useContext } from "react";
+import styled from "styled-components";
+import MyContext from "../shared/Context";
+
+const StyledMemberClickButtons = styled.div`
+    display: flex;
+    width: 600px;
+    height: 50%;
+    margin: 10px auto 30px auto;
+  
+    /* border: 3px solid rgba(163, 163, 163, 0.205);
+    border-radius: 8px;
+    background-color: rgba(222, 226, 235, 0.781); */
+`;
+
+const StyledMember = styled.img`
+    width: 130px;
+    height: 180px;
+    margin-right: 5%;
+    border-radius: 8px;
+    border: 3px solid rgba(163, 163, 163, 0.205);
+    -webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+
+    -webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .1s ease-in-out;
+	transition: .1s ease-in-out;
+  
+    &:hover {
+        /* border: 3px solid rgb(255, 255, 255); */
+        -webkit-filter: grayscale(0);
+	    filter: grayscale(0);
+
+        -webkit-transform: scale(1.05);
+	    transform: scale(1.05);
+    }
+`;
+
+const Footer = () => {
+    const { setSelectBtn } = useContext(MyContext); // 데이터에 접근
+
+    return <StyledMemberClickButtons>
+                <StyledMember alt="Img" src={`${process.env.PUBLIC_URL}/public_assets/winter.jpg`} onClick={() => {
+                    setSelectBtn('winter')
+                }}></StyledMember>
+                <StyledMember alt="Img" src={`${process.env.PUBLIC_URL}/public_assets/karina.jpeg`} onClick={() => {
+                    setSelectBtn('karina')
+                }}></StyledMember>
+                <StyledMember alt="Img" src={`${process.env.PUBLIC_URL}/public_assets/ningning.png`} onClick={() => {
+                    setSelectBtn('ningning')
+                }}></StyledMember>
+                <StyledMember alt="Img" src={`${process.env.PUBLIC_URL}/public_assets/giselle.jpeg`} onClick={() => {
+                    setSelectBtn('giselle')
+                }}></StyledMember>
+            </StyledMemberClickButtons>
+}
+
+export default Footer

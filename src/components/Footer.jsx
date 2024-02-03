@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import MyContext from "../shared/Context";
 
 const StyledFooter = styled.footer`
     width: 50%;
-    text-align: center;
     background-color: rgba(122, 90, 90, 0.623);
     border: 3px solid rgba(163, 163, 163, 0.205);
     border-radius: 8px;
@@ -30,36 +29,35 @@ const StyledBox = styled.div`
 `; 
   
 const StyledProfileIMG = styled.img`
-    width: 90px;
+    width: 100px;
+    height: 100px;
     border-radius: 70%;
+    text-align: center;
 `; 
 
 const StyledProfileZone = styled.div`
     width: 20%;
     padding-top: 20px;
+    padding-left: 20px;
 `; 
 
 const StyledContentZone = styled.div`
-    width: 80%;
+    width: 75%;
 `; 
+
+const StyledEmptyBox = styled.p`
+    color: white;
+    text-align: center;
+`;
 
 const Footer = () => {
     const navigate = useNavigate();
-    const { data, setData, selectBtn } = useContext(MyContext); // 데이터에 접근
-    const [filteredData, setFilteredData] = useState([]);
-    // 로컬 스토리지에서 데이터 불러오기
-    useEffect(() => {
-        const storedData = JSON.parse(localStorage.getItem('myData')) || [];
-        setData(storedData);
-      }, [setData]);
-      
-      useEffect(() => {
-        const newData = data.filter((item) => item.iswho === selectBtn);
-        setFilteredData(newData);
-      }, [data, selectBtn]);
+    const { data, selectBtn } = useContext(MyContext); // 데이터에 접근
+    const filteredData = data.filter((item) => item.iswho === selectBtn);
 
     return <StyledFooter>
                 {
+                    filteredData.length > 0 ? (
                     filteredData.map((item) => (
                         <div key={item.id} className="boxContainer">
                             <StyledBox onClick={() => {
@@ -76,6 +74,9 @@ const Footer = () => {
                             </StyledBox>
                         </div>
                     ))
+                    ) : (
+                        <StyledEmptyBox>등록된 글이 없습니다</StyledEmptyBox>
+                    )
                 }
             </StyledFooter>
 }

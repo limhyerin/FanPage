@@ -5,22 +5,34 @@ import styled from "styled-components"
 import MyContext from "../shared/Context";
 
 const StyledMain = styled.main`
-    height: 250px;
     width: 30%;
-  
-    text-align: center;
+
+
     margin: 10px auto 10px auto;
     background-color: rgba(122, 90, 90, 0.623);
     border: 3px solid rgba(163, 163, 163, 0.205);
     border-radius: 8px;
   
     padding: 20px auto 20px auto;
+    padding-left: 20px;
+`;
+const StyledContentInput = styled.textarea`
+    width: 90%;
+    height: 60px;
+`;
+
+const StyledCount = styled.p`
+    width: 80px;
+    margin-left: 75%;
+    color: white;
 `;
 
 const StyledRegist = styled.main`
-    width: 200px;
-    height: 20%;
+    width: 150px;
+    height: 30px;
+    text-align: center;
     margin: 10px auto 10px auto;
+    font-size: large;
     border: 3px solid rgb(255, 255, 255);
     border-radius: 8px;
     background-color: rgba(210, 216, 228, 0.692);
@@ -33,8 +45,9 @@ const Main = () => {
     const [nickName, setNickName] = useState('');
     const [contents, setContents] = useState('');
     const [profileImg, setProfileImg] = useState('');
-    const [selectWho, setSelectWho] = useState('winter');
-    const { data, setData } = useContext(MyContext); // 데이터에 접근
+    const { data, setData, selectWho, setSelectWho } = useContext(MyContext); // 데이터에 접근
+    let [inputCount, setInputCount] = useState(0); // 글자수 제한
+    let [contentCount, setContentCount] = useState(0); // 글자수 제한
 
     const clickAddHandler = (event) => {
         if(nickName && contents) {
@@ -57,7 +70,7 @@ const Main = () => {
 
     // 로컬 스토리지 데이터 저장
     useEffect(() => {
-        localStorage.setItem('data', JSON.stringify(data));
+        localStorage.setItem('data', JSON.stringify(data)); // 객체 모양 그대로 유지
     }, [data]);
     
     return <StyledMain>
@@ -67,18 +80,16 @@ const Main = () => {
                     value={nickName}
                     onChange={(e) => {
                         setNickName(e.target.value);
+                        setInputCount(e.target.value.length);
                     }}
+                    maxLength={20}
                 />
+                <StyledCount>
+                    <span>{inputCount}</span>
+                    <span>/20 자</span>
+                </StyledCount>
                 <InputData
-                    title={"내용"}
-                    placeholder={"최대 100글자까지 작성할 수 있습니다"}
-                    value={contents}
-                    onChange={(e) => {
-                        setContents(e.target.value);
-                    }}
-                />
-                <InputData
-                    title={"프로필"}
+                    title={"프로필 사진"}
                     placeholder={"프로필 이미지 url 작성"}
                     value={profileImg}
                     onChange={(e) => {
@@ -86,7 +97,7 @@ const Main = () => {
                     }}
                 />
                 <div className="whoSend">
-                    <p>누구에게 보내실건가요?</p>
+                    <p><strong>누구에게 보내실건가요?</strong> &nbsp;
                     <select name="choice" value={selectWho} onChange={(e) => {
                         setSelectWho(e.target.value);
                     }}>
@@ -95,10 +106,23 @@ const Main = () => {
                         <option value="ningning">닝닝</option>
                         <option value="giselle">지젤</option>
                     </select>
-                    </div>
-                    <div>
-                    <StyledRegist onClick={clickAddHandler}>펜레터 등록</StyledRegist>
+                    </p>
                 </div>
+                <p><strong>내용</strong></p>
+                <StyledContentInput type="text" 
+                    placeholder="최대 100글자까지 작성할 수 있습니다"
+                    value={contents}
+                    onChange={(e) => {
+                        setContents(e.target.value);
+                        setContentCount(e.target.value.length);
+                    }}
+                    maxLength={100}
+                />
+                <StyledCount>
+                    <span>{contentCount}</span>
+                    <span>/100 자</span>
+                </StyledCount>
+                <StyledRegist onClick={clickAddHandler}>펜레터 등록</StyledRegist>
             </StyledMain>
 }
 

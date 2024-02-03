@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import React, { useContext } from "react";
-import MyContext from "../shared/Context";
+import React from "react";
 
 const StyledHeader = styled.header`
     background-image: url("${process.env.PUBLIC_URL}/public_assets/backgroundIMG.png");
@@ -19,53 +18,15 @@ const StyledLogoImage = styled.img`
 
 const StyledLogo = styled.div`
     text-align: center;
-    padding-top: 80px;
-`;
-
-const StyledMemberClickButtons = styled.div`
-    display: flex;
-    width: 60%;
-    height: 40%;
-    margin: 10px auto 30px auto;
-  
-    border: 3px solid rgba(163, 163, 163, 0.205);
-    border-radius: 8px;
-    background-color: rgba(222, 226, 235, 0.781);
-`;
-
-const StyledMemberBtn = styled.button`
-    width: 22%;
-    margin: 1% 2% 1% 2%;
-    border: 3px solid rgba(163, 163, 163, 0.205);
-    border-radius: 8px;
-  
-    background-color: rgba(210, 216, 228, 0.692);
-    &:hover {
-        border: 3px solid rgba(21, 78, 192, 0.692);
-    }
+    padding-top: 120px;
 `;
 
 const Header = () => {
-    const { setSelectBtn } = useContext(MyContext); // 데이터에 접근
     return <StyledHeader>
                 <StyledLogoAndBtn>
                 <StyledLogo>
-                    <StyledLogoImage alt="logo" src={`${process.env.PUBLIC_URL}/public_assets/logo.png`}/>                    
+                    <StyledLogoImage alt="logo" src={`${process.env.PUBLIC_URL}/public_assets/logo.png`} onClick={() => window.location.reload()}/>                    
                 </StyledLogo>
-                <StyledMemberClickButtons>
-                    <StyledMemberBtn onClick={() => {
-                        setSelectBtn('winter')
-                    }}>윈터</StyledMemberBtn>
-                    <StyledMemberBtn onClick={() => {
-                        setSelectBtn('karina')
-                    }}>카리나</StyledMemberBtn>
-                    <StyledMemberBtn onClick={() => {
-                        setSelectBtn('ningning')
-                    }}>닝닝</StyledMemberBtn>
-                    <StyledMemberBtn onClick={() => {
-                        setSelectBtn('giselle')
-                    }}>지젤</StyledMemberBtn>
-                </StyledMemberClickButtons>
                 </StyledLogoAndBtn>
             </StyledHeader>
 }
