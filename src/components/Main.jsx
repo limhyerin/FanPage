@@ -37,11 +37,12 @@ const StyledRegist = styled.main`
     text-align: center;
     margin: 10px auto 10px auto;
     font-size: large;
-    border: 3px solid rgb(255, 255, 255);
+    border: 3px solid rgb(198, 183, 226);
     border-radius: 8px;
-    background-color: rgba(210, 216, 228, 0.692);
+    background-color:rgb(198, 183, 226);
     &:hover {
-        background-color: rgb(180, 161, 219);
+        border: 3px solid rgb(159, 144, 189);
+        background-color: rgb(159, 144, 189);
     }
 `;
 
@@ -135,7 +136,7 @@ const Main = () => {
                     <span>{contentCount}</span>
                     <span>/100 자</span>
                 </StyledCount>
-                <StyledRegist onClick={clickAddHandler}><strong>펜레터 등록</strong></StyledRegist>
+                <StyledRegist onClick={clickAddHandler}><strong>등록하기</strong></StyledRegist>
             </StyledMain>
 }
 

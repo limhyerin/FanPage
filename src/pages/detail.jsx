@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { UseDispatch, useDispatch } from 'react-redux';
+import { setData } from '../redux/modules/data';
 
 // 팬페이지 수정박스 틀
 const StyledLetter = styled.div`
@@ -43,7 +45,7 @@ const StyledNewcontent = styled.textarea`
   border: 3px solid rgba(255, 255, 255, 0.692);
   border-radius: 8px;
   padding: 20px;
-  background-color: #7988a883;
+  background-color: #7988a84e;
 `;
 
 // 수정 버튼 css
@@ -100,6 +102,7 @@ function Detail() {
   const storedData = JSON.parse(localStorage.getItem('data'));
   const item = storedData.find((item) => item.id === id);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // 글자수 제한
   let [inputCount, setInputCount] = useState(0); 
@@ -128,6 +131,8 @@ function Detail() {
     });
     // 수정된 데이터 로컬 스토리지에 저장
     localStorage.setItem('data', JSON.stringify(updateData));
+    // Redux store 업데이트
+    dispatch(setData(updateData));
   }
 
   const deleteHandler = () => {
@@ -136,6 +141,8 @@ function Detail() {
       // 삭제된 데이터 제외하고 저장
       const updateData = storedData.filter((data) => data.id !== id);
       localStorage.setItem('data', JSON.stringify(updateData));
+      // Redux store 업데이트
+      dispatch(setData(updateData));
 
       // 삭제 후 홈 페이지로 이동
       navigate(`/`);
