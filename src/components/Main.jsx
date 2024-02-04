@@ -20,7 +20,8 @@ const StyledMain = styled.main`
 const StyledContentInput = styled.textarea`
     width: 90%;
     height: 60px;
-    //border: 3px solid rgb(0, 0, 0);
+    background-color: rgba(189, 189, 189, 0.425);
+    border: 3px solid transparent;
     //border-radius: 8px;
 `;
 
@@ -28,7 +29,7 @@ const StyledCount = styled.p`
     width: 80px;
     margin-left: 75%;
     margin-top: 0px;
-    color: white;
+    color: #000000;
 `;
 
 const StyledRegist = styled.main`
@@ -37,12 +38,11 @@ const StyledRegist = styled.main`
     text-align: center;
     margin: 10px auto 10px auto;
     font-size: large;
-    border: 3px solid rgb(198, 183, 226);
+    border: 3px solid transparent;
     border-radius: 8px;
-    background-color:rgb(198, 183, 226);
+    background-color:rgba(93, 120, 160, 0.658);
     &:hover {
-        border: 3px solid rgb(159, 144, 189);
-        background-color: rgb(159, 144, 189);
+        background-color: rgba(82, 99, 126, 0.658);
     }
 `;
 
