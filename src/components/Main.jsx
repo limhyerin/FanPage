@@ -6,11 +6,11 @@ import MyContext from "../shared/Context";
 
 const StyledMain = styled.main`
     width: 30%;
-
+    height: 500px;
 
     margin: 10px auto 10px auto;
-    background-color: rgba(122, 90, 90, 0.623);
-    border: 3px solid rgba(163, 163, 163, 0.205);
+    background-color: rgb(255, 255, 255);
+    border: 3px solid transparent;
     border-radius: 8px;
   
     padding: 20px auto 20px auto;
@@ -19,11 +19,14 @@ const StyledMain = styled.main`
 const StyledContentInput = styled.textarea`
     width: 90%;
     height: 60px;
+    //border: 3px solid rgb(0, 0, 0);
+    //border-radius: 8px;
 `;
 
 const StyledCount = styled.p`
     width: 80px;
     margin-left: 75%;
+    margin-top: 0px;
     color: white;
 `;
 
@@ -37,7 +40,7 @@ const StyledRegist = styled.main`
     border-radius: 8px;
     background-color: rgba(210, 216, 228, 0.692);
     &:hover {
-        border: 3px solid rgba(21, 78, 192, 0.692);
+        background-color: rgb(180, 161, 219);
     }
 `;
 
@@ -122,7 +125,7 @@ const Main = () => {
                     <span>{contentCount}</span>
                     <span>/100 자</span>
                 </StyledCount>
-                <StyledRegist onClick={clickAddHandler}>펜레터 등록</StyledRegist>
+                <StyledRegist onClick={clickAddHandler}><strong>펜레터 등록</strong></StyledRegist>
             </StyledMain>
 }
 

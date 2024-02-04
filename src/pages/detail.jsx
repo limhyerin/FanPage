@@ -4,30 +4,31 @@ import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledContainer = styled.div`
-    background-color: rgb(107, 99, 90);
+    /* background-color: rgb(107, 99, 90); */
+`;
+
+const StyledLetter = styled.div`
+  width: 70%;
+  background-color: #7988a883;
+  
+  margin: 50px auto 50px auto;
+  padding-bottom: 50px;
+  text-align: center;
+  //border: 3px solid rgba(148, 162, 189, 0.692);
+  border-radius: 8px;
 `;
 
 const StyledHomeBtn = styled.img`
   width: 3%;
-  margin: 10px auto auto 10px;
+  margin: 50px auto 50px auto;
 `;
 
 const StyledProfileIMG = styled.img`
-    width: 90px;
-    height: 90px;
+    width: 100px;
+    height: 100px;
     border-radius: 70%;
     text-align: center;
-    margin-top: 50px;
 `; 
-
-const StyledMain = styled.main`
-  width: 70%;
-  margin: 50px auto 50px auto;
-  padding-bottom: 50px;
-  text-align: center;
-  border: 3px solid rgba(255, 255, 255, 0.692);
-  border-radius: 8px;
-`;
 
 // 기존 팬레터 내용
 const StyledContent = styled.p`
@@ -45,10 +46,55 @@ const StyledNewcontent = styled.textarea`
   border: 3px solid rgba(255, 255, 255, 0.692);
   border-radius: 8px;
   padding: 20px;
+  background-color: #7988a883;
 `;
 
-const StyledFooter = styled.footer`
-  height: 50px;
+// 수정 버튼 css
+const StyledEditButton = styled.button`
+  background-color: #7e79a8bb;
+  border: 3px solid transparent;
+  border-radius: 8px;
+  padding: 8px 20px;
+  color: white;
+  margin-left: 2px;
+  margin-right: 2px;
+
+  &:hover {
+    background-color: #7e79a8;
+    border: 3px solid transparent;
+  }
+`;
+
+// 완료 버튼 css
+const StyledSaveButton = styled.button`
+  background-color: #5d8660b8;
+  border: 3px solid transparent;
+  border-radius: 8px;
+  padding: 8px 20px;
+  color: white;
+  margin-left: 2px;
+  margin-right: 2px;
+
+  &:hover {
+    background-color: #5d8660;
+    border: 3px solid transparent;
+  }
+`;
+
+// 삭제 버튼 css
+const StyledDelButton = styled.button`
+  background-color: #a87979bc;
+  border: 3px solid transparent;
+  border-radius: 8px;
+  padding: 8px 20px;
+  color: white;
+  margin-left: 2px;
+  margin-right: 2px;
+
+  &:hover {
+    background-color: #a87979;
+    border: 3px solid transparent;
+  }
 `;
 
 function Detail() {
@@ -100,15 +146,14 @@ function Detail() {
   }
   return (
     <StyledContainer>
-      <header>
+      <StyledLetter>
         <Link to="/"><StyledHomeBtn alt="btn" src={`${process.env.PUBLIC_URL}/public_assets/HomeBtn.png`}/></Link>
-      </header>
-      <StyledMain>
         <div>
           <StyledProfileIMG alt="profileImg" src={item.profileImg}/>
         </div>
         <div>
           <h3>{item.nickName}</h3>
+          <p>To. {item.iswho}</p>
           <p>{item.time}</p>
           {isEditing ? (
             <div>
@@ -130,22 +175,17 @@ function Detail() {
           )}
           {isEditing ? (
             <>
-              <button onClick={saveHandler}>완료</button>
-              <button onClick={cancelEditHandler}>삭제</button>
+              <StyledSaveButton onClick={saveHandler}>완료</StyledSaveButton>
+              <StyledDelButton onClick={cancelEditHandler}>삭제</StyledDelButton>
             </>
           ) : (
             <>
-              <button onClick={editHandler}>수정</button>
-              <button onClick={deleteHandler}>삭제</button>
+              <StyledEditButton onClick={editHandler}>수정</StyledEditButton>
+              <StyledDelButton onClick={deleteHandler}>삭제</StyledDelButton>
             </>
           )}
         </div>
-      </StyledMain>
-      <StyledFooter>
-        <div>
-          <p>footer부분</p>
-        </div>
-      </StyledFooter>
+      </StyledLetter>
     </StyledContainer>
   )
 }

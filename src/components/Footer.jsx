@@ -5,7 +5,7 @@ import MyContext from "../shared/Context";
 
 const StyledFooter = styled.footer`
     width: 50%;
-    background-color: rgba(122, 90, 90, 0.623);
+    background-color: rgb(255, 255, 255);
     border: 3px solid rgba(163, 163, 163, 0.205);
     border-radius: 8px;
     padding: 20px 20px 20px 20px;
@@ -15,8 +15,8 @@ const StyledFooter = styled.footer`
 
 const StyledBox = styled.div`
     background-color: transparent;
-    border: 3px solid rgb(255, 255, 255);
-    border-radius: 8px;
+    border: 2px solid rgb(192, 192, 192);
+    //border-radius: 8px;
     margin-bottom: 10px;
     display: flex;
     padding: 10px 10px 10px 10px;
@@ -24,7 +24,8 @@ const StyledBox = styled.div`
     text-decoration: none;
     color: black;
     &:hover {
-        border: 3px solid rgba(21, 78, 192, 0.692);
+        border: 2px solid rgba(204, 196, 221, 0.479);
+        background-color: rgba(187, 187, 187, 0.479);
     }
 `; 
   
@@ -46,7 +47,7 @@ const StyledContentZone = styled.div`
 `; 
 
 const StyledEmptyBox = styled.p`
-    color: white;
+    color: #000000;
     text-align: center;
 `;
 

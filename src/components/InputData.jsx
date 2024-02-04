@@ -2,6 +2,8 @@ import styled from "styled-components"
 
 const StyledText = styled.textarea`
     width: 90%;
+    //border: 3px solid rgb(0, 0, 0);
+    //border-radius: 8px;
 `;
 const InputData = ({title, placeholder, value, onChange}) => {
     return <>

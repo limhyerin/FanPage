@@ -4,9 +4,12 @@ import MyContext from "../shared/Context";
 
 const StyledMemberClickButtons = styled.div`
     display: flex;
-    width: 600px;
+    width: 590px;
     height: 50%;
     margin: 10px auto 30px auto;
+    padding: 10px 10px 10px 10px;
+    background-color: #ffffff37;
+    border-radius: 8px;
   
     /* border: 3px solid rgba(163, 163, 163, 0.205);
     border-radius: 8px;
@@ -18,7 +21,7 @@ const StyledMember = styled.img`
     height: 180px;
     margin-right: 5%;
     border-radius: 8px;
-    border: 3px solid rgba(163, 163, 163, 0.205);
+    border: 3px solid rgba(209, 195, 236, 0.26);
     -webkit-filter: grayscale(100%);
 	filter: grayscale(100%);
 
@@ -26,7 +29,7 @@ const StyledMember = styled.img`
 	transform: scale(1);
 	-webkit-transition: .1s ease-in-out;
 	transition: .1s ease-in-out;
-  
+
     &:hover {
         /* border: 3px solid rgb(255, 255, 255); */
         -webkit-filter: grayscale(0);
@@ -34,6 +37,7 @@ const StyledMember = styled.img`
 
         -webkit-transform: scale(1.05);
 	    transform: scale(1.05);
+        border: 3px solid rgb(172, 160, 196);
     }
 `;
 
