@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import MyContext from "../shared/Context";
+import { useSelector } from "react-redux";
 
 const StyledFooter = styled.footer`
     width: 50%;
@@ -52,7 +52,12 @@ const StyledEmptyBox = styled.p`
 
 const Footer = () => {
     const navigate = useNavigate();
-    const { data, selectBtn } = useContext(MyContext); // 데이터에 접근
+    // 데이터 가져옴
+    const { data, selectBtn } = useSelector((state) => ({
+        data: state.data,
+        selectBtn: state.selectBtn,
+    }));
+    
     const filteredData = data ? data.filter((item) => item.iswho === selectBtn) : [];
 
     return <StyledFooter>

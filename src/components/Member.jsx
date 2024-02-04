@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-import MyContext from "../shared/Context";
+import { useDispatch } from "react-redux";
+import { setSelectBtn } from "../redux/modules/data";
 
 const StyledMemberClickButtons = styled.div`
     display: flex;
@@ -12,7 +13,7 @@ const StyledMemberClickButtons = styled.div`
     border-radius: 8px;
 `;
 
-// 각 멤버들 이미지 css 및 hover 효과
+// 각 멤버들 이미지 css 및 hover
 const StyledMember = styled.img`
     width: 130px;
     height: 180px;
@@ -38,20 +39,21 @@ const StyledMember = styled.img`
 `;
 
 const Member = () => {
-    const { setSelectBtn } = useContext(MyContext); // 데이터에 접근
+    // 데이터에 접근
+    const dispatch = useDispatch();
 
     return <StyledMemberClickButtons>
                 <StyledMember alt="Img" src={`${process.env.PUBLIC_URL}/public_assets/winter.jpg`} onClick={() => {
-                    setSelectBtn('winter')
+                    dispatch(setSelectBtn('winter'))
                 }}></StyledMember>
                 <StyledMember alt="Img" src={`${process.env.PUBLIC_URL}/public_assets/karina.jpeg`} onClick={() => {
-                    setSelectBtn('karina')
+                    dispatch(setSelectBtn('karina'))
                 }}></StyledMember>
                 <StyledMember alt="Img" src={`${process.env.PUBLIC_URL}/public_assets/ningning.png`} onClick={() => {
-                    setSelectBtn('ningning')
+                    dispatch(setSelectBtn('ningning'))
                 }}></StyledMember>
                 <StyledMember alt="Img" src={`${process.env.PUBLIC_URL}/public_assets/giselle.jpeg`} onClick={() => {
-                    setSelectBtn('giselle')
+                    dispatch(setSelectBtn('giselle'))
                 }}></StyledMember>
             </StyledMemberClickButtons>
 }

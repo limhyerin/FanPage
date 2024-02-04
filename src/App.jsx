@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
+import { Provider } from 'react-redux';
+import store from './redux/config/configStore';
 import Header from "./components/Header";
 import Member from "./components/Member";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
-import MyContext from "./shared/Context";
 import styled from "styled-components";
 import './App.css';
 
@@ -24,26 +25,20 @@ const StyledInputLetterContainer = styled.div`
 `;
 
 function App() {
-  // 로컬스토리지에서 데이터 불러오기
-  const stroredData = JSON.parse(localStorage.getItem(['data'])) || [];
-  const [data, setData] = useState(stroredData);
-  const [selectBtn, setSelectBtn] = useState('winter');
-  const [selectWho, setSelectWho] = useState('winter');
-
-return (
-  <StyledContainer>
-    <MyContext.Provider value={{data, setData, selectBtn, setSelectBtn, selectWho, setSelectWho}}>
-      <Header />
-      <StyledBox>
-        <Member />
-        <StyledInputLetterContainer>
-          <Main/>
-          <Footer/>
-        </StyledInputLetterContainer>
-      </StyledBox>
-    </MyContext.Provider>
-  </StyledContainer>
-);
+  return (
+    <Provider store={store}>
+      <StyledContainer>
+        <Header />
+        <StyledBox>
+          <Member />
+          <StyledInputLetterContainer>
+            <Main/>
+            <Footer/>
+          </StyledInputLetterContainer>
+        </StyledBox>
+      </StyledContainer>
+    </Provider>
+  );
 }
 
 export default App;

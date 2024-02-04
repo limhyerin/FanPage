@@ -1,8 +1,9 @@
 import InputData from "./InputData";
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setData, setSelectWho } from "../redux/modules/data";
 import uuid from "react-uuid";
 import styled from "styled-components"
-import MyContext from "../shared/Context";
 
 const StyledMain = styled.main`
     width: 30%;
@@ -50,7 +51,11 @@ const Main = () => {
     const [profileImg, setProfileImg] = useState('');
 
     // 데이터에 접근
-    const { data, setData, selectWho, setSelectWho } = useContext(MyContext);
+    const dispatch = useDispatch();
+    const { data, selectWho } = useSelector((state) => ({
+        data: state.data,
+        selectWho: state.selectWho
+    }));
 
     // 글자수 제한
     let [inputCount, setInputCount] = useState(0); 
@@ -66,7 +71,8 @@ const Main = () => {
                 time: new Date().toLocaleString(),
                 iswho: selectWho,
             }
-            setData([newData,...data]);
+            // setData([newData,...data]);
+            dispatch(setData([newData, ...data]));
             setNickName(''); // 등록 후 닉네임 초기화
             setContents(''); // 등록 후 내용 초기화
             setProfileImg(''); // 등록 후 프로필 url 초기화
@@ -106,7 +112,7 @@ const Main = () => {
                 <div className="whoSend">
                     <p><strong>누구에게 보내실건가요?</strong> &nbsp;
                     <select name="choice" value={selectWho} onChange={(e) => {
-                        setSelectWho(e.target.value);
+                        dispatch(setSelectWho(e.target.value));
                     }}>
                         <option value="winter">윈터</option>
                         <option value="karina">카리나</option>
