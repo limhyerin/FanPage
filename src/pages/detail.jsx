@@ -3,26 +3,23 @@ import { Link } from 'react-router-dom'
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-const StyledContainer = styled.div`
-    /* background-color: rgb(107, 99, 90); */
-`;
-
+// 팬페이지 수정박스 틀
 const StyledLetter = styled.div`
   width: 70%;
   background-color: #7988a883;
-  
   margin: 50px auto 50px auto;
   padding-bottom: 50px;
   text-align: center;
-  //border: 3px solid rgba(148, 162, 189, 0.692);
   border-radius: 8px;
 `;
 
+// 다시 메인페이지로 돌아가는 홈버튼
 const StyledHomeBtn = styled.img`
   width: 3%;
   margin: 50px auto 50px auto;
 `;
 
+// 해당 팬레터의 프로필
 const StyledProfileIMG = styled.img`
     width: 100px;
     height: 100px;
@@ -145,7 +142,7 @@ function Detail() {
     }
   }
   return (
-    <StyledContainer>
+    <div>
       <StyledLetter>
         <Link to="/"><StyledHomeBtn alt="btn" src={`${process.env.PUBLIC_URL}/public_assets/HomeBtn.png`}/></Link>
         <div>
@@ -186,7 +183,7 @@ function Detail() {
           )}
         </div>
       </StyledLetter>
-    </StyledContainer>
+    </div>
   )
 }
 

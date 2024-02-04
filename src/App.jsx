@@ -8,9 +8,6 @@ import styled from "styled-components";
 import './App.css';
 
 const StyledContainer = styled.div`
-    /* background-image: url("${process.env.PUBLIC_URL}/public_assets/back.png");
-    background-position: center;
-    background-size: cover; */
     background-color: #82718f;
 `;
 
@@ -28,7 +25,7 @@ const StyledInputLetterContainer = styled.div`
 
 function App() {
   // 로컬스토리지에서 데이터 불러오기
-  const stroredData = JSON.parse(localStorage.getItem(['data']));
+  const stroredData = JSON.parse(localStorage.getItem(['data'])) || [];
   const [data, setData] = useState(stroredData);
   const [selectBtn, setSelectBtn] = useState('winter');
   const [selectWho, setSelectWho] = useState('winter');

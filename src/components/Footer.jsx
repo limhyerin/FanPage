@@ -16,7 +16,6 @@ const StyledFooter = styled.footer`
 const StyledBox = styled.div`
     background-color: transparent;
     border: 2px solid rgb(192, 192, 192);
-    //border-radius: 8px;
     margin-bottom: 10px;
     display: flex;
     padding: 10px 10px 10px 10px;
@@ -54,7 +53,7 @@ const StyledEmptyBox = styled.p`
 const Footer = () => {
     const navigate = useNavigate();
     const { data, selectBtn } = useContext(MyContext); // 데이터에 접근
-    const filteredData = data.filter((item) => item.iswho === selectBtn);
+    const filteredData = data ? data.filter((item) => item.iswho === selectBtn) : [];
 
     return <StyledFooter>
                 {

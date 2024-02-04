@@ -48,9 +48,13 @@ const Main = () => {
     const [nickName, setNickName] = useState('');
     const [contents, setContents] = useState('');
     const [profileImg, setProfileImg] = useState('');
-    const { data, setData, selectWho, setSelectWho } = useContext(MyContext); // 데이터에 접근
-    let [inputCount, setInputCount] = useState(0); // 글자수 제한
-    let [contentCount, setContentCount] = useState(0); // 글자수 제한
+
+    // 데이터에 접근
+    const { data, setData, selectWho, setSelectWho } = useContext(MyContext);
+
+    // 글자수 제한
+    let [inputCount, setInputCount] = useState(0); 
+    let [contentCount, setContentCount] = useState(0);
 
     const clickAddHandler = (event) => {
         if(nickName && contents) {

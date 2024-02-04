@@ -10,12 +10,9 @@ const StyledMemberClickButtons = styled.div`
     padding: 10px 10px 10px 10px;
     background-color: #ffffff37;
     border-radius: 8px;
-  
-    /* border: 3px solid rgba(163, 163, 163, 0.205);
-    border-radius: 8px;
-    background-color: rgba(222, 226, 235, 0.781); */
 `;
 
+// 각 멤버들 이미지 css 및 hover 효과
 const StyledMember = styled.img`
     width: 130px;
     height: 180px;
@@ -31,7 +28,6 @@ const StyledMember = styled.img`
 	transition: .1s ease-in-out;
 
     &:hover {
-        /* border: 3px solid rgb(255, 255, 255); */
         -webkit-filter: grayscale(0);
 	    filter: grayscale(0);
 
@@ -41,7 +37,7 @@ const StyledMember = styled.img`
     }
 `;
 
-const Footer = () => {
+const Member = () => {
     const { setSelectBtn } = useContext(MyContext); // 데이터에 접근
 
     return <StyledMemberClickButtons>
@@ -60,4 +56,4 @@ const Footer = () => {
             </StyledMemberClickButtons>
 }
 
-export default Footer
+export default Member
